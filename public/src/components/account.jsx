@@ -37,8 +37,6 @@ class AccountPage extends Component {
           <Link className="btn btn-primary" to={`/account/${id}/edit`}>
             Edit Account
           </Link>
-        </div>
-        <div>
           <Button bsStyle="primary" onClick={this.onDeleteClick}>Delete Account</Button>
         </div>
       </div>

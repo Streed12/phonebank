@@ -1,14 +1,9 @@
 import axios from 'axios';
 
 export default function registerNewUser(userInfo, history) {
-  const { first_name, last_name, email, phone_number, password } = userInfo;
   // route that was previously known as '/users'
   return () => axios.post('/auth/register', {
-    first_name,
-    last_name,
-    password,
-    phone_number,
-    email
+    ...userInfo
   })
   .then((res) => {
     history.push('/login');

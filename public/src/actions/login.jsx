@@ -21,8 +21,7 @@ export function logout() {
   };
 }
 
-export function loginUser(loginInfo, history) {
-  const { email, password } = loginInfo;
+export function loginUser( { email, password }, history) {
   return dispatch => axios.post('/auth/login', {
     email,
     password
@@ -48,6 +47,7 @@ export function logoutUser(userInfo, history) {
   return dispatch => axios.get('/logout')
   .then(() => {
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('status');
     dispatch(logout());
     history.push('/login');
   })
@@ -61,8 +61,7 @@ export function logoutUser(userInfo, history) {
 }
 
 export function authTransition(storeInstance) {
-  const { auth } = storeInstance.getState();
-  const { id } = auth;
+  const { auth: { id } } = storeInstance.getState();
   const token = localStorage.getItem('auth_token');
   return !!id && !!token;
 }

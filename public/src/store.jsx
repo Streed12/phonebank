@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import immutable from 'redux-immutable-state-invariant';
 import { createLogger } from 'redux-logger';
+import { retrieveStatus } from './helpers/localStorage';
 
 import { authStatusReducer, LOGOUT_USER } from './reducers/login';
 import { accountInfoReducer } from './reducers/account_info';
@@ -14,13 +15,15 @@ const appReducer = combineReducers({
   auth: authStatusReducer,
   account_info: accountInfoReducer
 });
-
 const rootReducer = (state, action) => {
   const { type } = action;
   const newState = (type === LOGOUT_USER) ? undefined : state;
   return appReducer(newState, action);
 };
 
+const modStore = retrieveStatus();
+
 const middleware = [immutable(), createLogger(), promise(), thunk];
 
-module.exports = createStore(rootReducer, applyMiddleware(...middleware));
+module.exports = createStore(rootReducer, modStore,
+applyMiddleware(...middleware));

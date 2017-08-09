@@ -3,7 +3,6 @@ import { logoutUser } from './login';
 
 export function updateUser(userId, userInfo, history) {
   const { first_name, last_name, email, phone_number } = userInfo;
-
   return () => axios.put(`/users/${userId}`,
     {
       first_name,

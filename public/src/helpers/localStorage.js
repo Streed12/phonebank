@@ -1,7 +1,6 @@
 export const retrieveStatus = () => {
   try {
-    const retrievedData = localStorage.getItem('state');
-    console.log('RetrievedDate', retrievedData)
+    const retrievedData = localStorage.getItem('status');
     if (retrievedData === null) {
       return undefined;
     }
@@ -11,12 +10,10 @@ export const retrieveStatus = () => {
   }
 };
 
-export const saveStatus = ({ auth: { id } }) => {
-  console.log(id)
+export const saveStatus = ({ auth, account_info }) => {
   try {
-    const retrievedState = JSON.stringify(id);
-    console.log(retrieveStatus, localStorage)
-    localStorage.setItem('state', retrievedState);
+    const updateState = Object.assign({}, { account_info, auth });
+    localStorage.setItem('status', JSON.stringify(updateState));
   } catch (e) {
     //nada
   }
