@@ -10,19 +10,19 @@ class Navigation extends Component {
     this.renderLinks = this.renderLinks.bind(this);
   }
   logoutOnClick() {
-    const { userInfo, history } = this.props;
+    const { history, userInfo } = this.props;
     this.props.logout(userInfo, history);
   }
   // Render all current links
   renderLinks() {
     return (
-      this.props.links.map((link) => {
-        if (link.href === '/logout') {
-          return <MenuItem key={link.title} onClick={this.logoutOnClick}>{link.title}</MenuItem>;
+      this.props.links.map(({ href, title }) => {
+        if (href === '/logout') {
+          return <MenuItem key={title} onClick={this.logoutOnClick}>{title}</MenuItem>;
         }
         return (
-          <li role="presentation" key={link.title}>
-            <Link tabIndex="-1" role="menuitem" to={link.href}>{link.title}</Link>
+          <li role="presentation" key={title}>
+            <Link tabIndex="-1" role="menuitem" to={href}>{title}</Link>
           </li>
         );
       })

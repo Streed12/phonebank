@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Grid } from 'react-bootstrap';
-import Header from './header';
+import { Header } from './index';
 import { logoutUser } from '../actions/login';
 
 class App extends Component {
+
   render() {
-    const { auth, account_info, history } = this.props;
+    const { account_info, auth: { id }, history } = this.props;
     const logoutUserAction = this.props.logoutUser;
-    const { id } = auth;
     return (
       <div>
         <Header

@@ -4,9 +4,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { PageHeader, Row, Col } from 'react-bootstrap';
 
 class LandingPage extends Component {
-
   render() {
-    const { id } = this.props.auth;
+    const { auth: { id } } = this.props;
     return (
       <Row>
         <Col md={12}>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Row, Col } from 'react-bootstrap';
-import Navigation from './navigation';
+import { Navigation } from './index';
 
 export default class Header extends Component {
   constructor(props) {
@@ -9,9 +9,8 @@ export default class Header extends Component {
     // Bind
     this.getLinks = this.getLinks.bind(this);
   }
-  getLinks() {
+  getLinks(userId = null) {
     // links to pass into the navigation based on session info
-    const { userId } = this.props;
     let links = [];
     if (userId) { // user is logged in aka id present
       links = [
@@ -27,6 +26,7 @@ export default class Header extends Component {
     return links;
   }
   render() {
+    const { history, logout, userId, userInfo: { first_name } } = this.props;
     return (
       <Navbar>
         <Row>
@@ -37,10 +37,10 @@ export default class Header extends Component {
           </Col>
           <Col md={4} id="navigation">
             <Navigation
-              title={!this.props.userId ? 'Menu' : this.props.userInfo.first_name}
-              links={this.getLinks()}
-              logout={this.props.logout}
-              history={this.props.history}
+              title={!userId ? 'Menu' : first_name}
+              links={this.getLinks(userId)}
+              logout={logout}
+              history={history}
             />
           </Col>
         </Row>

@@ -16,31 +16,23 @@ class AccountPage extends Component {
     //   this[func] = this[func].bind(this);
     // });
   }
-
-  componentDidMount() {
-    const { id } = this.props.auth;
-    this.props.fetchUser(id);
-  }
-
   onDeleteClick() {
-    const { id } = this.props.auth;
-    const { history } = this.props;
+    const { auth: { id }, history } = this.props;
     this.props.deleteUser(id, history);
   }
 
   render() {
-    const { account_info } = this.props;
-    const { id } = this.props.auth;
-    const { first_name, last_name, email, phone_number } = account_info;
+    const { account_info: { first_name, last_name, email, phone_number },
+     auth: { id } } = this.props;
 
     return (
       <div>
         <h6>Name:</h6>
-        <h3>{account_info ? `${first_name} ${last_name}` : ''}</h3>
+        <h3>{`${first_name} ${last_name}`}</h3>
         <h6>Email:</h6>
-        <h3>{account_info ? email : ''}</h3>
+        <h3>{email}</h3>
         <h6>Phone:</h6>
-        <h3>{account_info ? phone_number : ''}</h3>
+        <h3>{phone_number}</h3>
         <div className="text-xs-right">
           <Link className="btn btn-primary" to={`/account/${id}/edit`}>
             Edit Account

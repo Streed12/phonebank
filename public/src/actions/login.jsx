@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { CLEAR_AUTH, SET_AUTH_JWT_FULFILLED, LOGOUT_USER } from '../reducers/login';
+import { fetchUser } from './account_info';
 
 export function setUserAuthCredentials(user) {
   return {
@@ -22,16 +23,17 @@ export function logout() {
 
 export function loginUser(loginInfo, history) {
   const { email, password } = loginInfo;
-
   return dispatch => axios.post('/auth/login', {
     email,
     password
   })
-  .then((res) => {
-    const { token, id } = res.data;
+  .then(({ data }) => {
+    const { token, id } = data;
     localStorage.setItem('auth_token', token);
-    dispatch(setUserAuthCredentials({ id }));
-    history.push('/');
+    Promise.all([dispatch(setUserAuthCredentials(data)),
+      dispatch(fetchUser(id))]
+    )
+    .then(() => history.push('/'));
   })
   .catch((err) => {
     const customError = {

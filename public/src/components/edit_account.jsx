@@ -14,8 +14,7 @@ class EditAccountInfo extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   onSubmit(values) {
-    const { history } = this.props;
-    const { id } = this.props.auth;
+    const { auth: { id }, history } = this.props;
     this.props.updateUser(id, values, history);
   }
 
@@ -44,8 +43,7 @@ class EditAccountInfo extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
-    const { id } = this.props.auth;
+    const { auth: { id }, handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <div className="row">
