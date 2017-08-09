@@ -42,7 +42,7 @@ export function loginUser(loginInfo, history) {
   });
 }
 
-export function logoutUser(history) {
+export function logoutUser(userInfo, history) {
   return dispatch => axios.get('/logout')
   .then(() => {
     localStorage.removeItem('auth_token');
