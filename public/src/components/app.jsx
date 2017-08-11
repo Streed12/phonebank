@@ -6,10 +6,8 @@ import { Header } from './index';
 import { logoutUser } from '../actions/login';
 
 class App extends Component {
-
   render() {
-    const { account_info, auth: { id }, history } = this.props;
-    const logoutUserAction = this.props.logoutUser;
+    const { account_info, auth: { id }, history, logoutUser: logoutUserAction } = this.props;
     return (
       <div>
         <Header

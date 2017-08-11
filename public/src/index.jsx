@@ -13,6 +13,7 @@ import { App } from './components';
 // Routes
 import GenerateRoute from './routes/generateRoutes';
 
+// User Auth Action
 import { authTransition } from './actions/login';
 
 store.subscribe(() => {

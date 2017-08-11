@@ -9,7 +9,7 @@ export default class Header extends Component {
     // Bind
     this.getLinks = this.getLinks.bind(this);
   }
-  getLinks (userId = null) {
+  getLinks(userId = null) {
     // links to pass into the navigation based on session info
     // user is logged in aka id present
     if (userId) {
