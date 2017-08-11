@@ -1,23 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import { saveStatus } from './helpers/localStorage';
-store.subscribe(() => {
-  saveStatus(store.getState());
-});
 
 import '../stylesheets/app.less';
 
 // Components
-import { App, LogInForm } from './components';
+import { App } from './components';
 
 // Routes
 import GenerateRoute from './routes/generateRoutes';
 
-// Actions
 import { authTransition } from './actions/login';
+
+store.subscribe(() => {
+  saveStatus(store.getState());
+});
 
 const Root = () => {
   // checks if user id !==null and if authToken exists in localStorage;

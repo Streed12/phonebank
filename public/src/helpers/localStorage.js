@@ -15,7 +15,7 @@ export const saveStatus = ({ auth, account_info }) => {
     const updateState = Object.assign({}, { account_info, auth });
     localStorage.setItem('status', JSON.stringify(updateState));
   } catch (e) {
-    //nada
+    console.log('There was an error saving state in localStorage', e)
   }
 };
 

@@ -62,33 +62,32 @@ class RegistrationForm extends Component {
   }
 }
 
-function validate(values) {
+function validate({ email, first_name, last_name, password, password_confirm, phone_number }) {
   const errors = {};
-  if (!values.first_name) {
+  if (!first_name) {
     errors.first_name = 'Please enter your first name.';
   }
-  if (!values.last_name) {
+  if (!last_name) {
     errors.last_name = 'Please enter your last name.';
   }
-  if (!values.email) {
+  if (!email) {
     errors.email = 'Please enter your email.';
-  } else if (!values.email.includes('@')) {
+  } else if (!email.includes('@')) {
     errors.email = 'Please enter a valid email.';
   }
-  if (!values.phone_number) {
+  if (!phone_number) {
     errors.phone_number = 'Please enter your phone number.';
   }
-  if (!values.password) {
+  if (!password) {
     errors.password = 'Please enter your password.';
   }
-  if (!values.password_confirm) {
+  if (!password_confirm) {
     errors.password_confirm = 'Please confirm your password.';
   }
-  if (!!values.password && !!values.password_confirm && values.password
-      !== values.password_confirm) {
+  if (!!password && !!password_confirm && password
+      !== password_confirm) {
     errors.password_confirm = 'The passwords must match.';
   }
-
   return errors;
 }
 

@@ -9,21 +9,19 @@ export default class Header extends Component {
     // Bind
     this.getLinks = this.getLinks.bind(this);
   }
-  getLinks(userId = null) {
+  getLinks (userId = null) {
     // links to pass into the navigation based on session info
-    let links = [];
-    if (userId) { // user is logged in aka id present
-      links = [
+    // user is logged in aka id present
+    if (userId) {
+      return [
         { title: 'Account', href: `/account/${userId}` },
         { title: 'Logout', href: '/logout' }
       ];
-    } else {
-      links = [
-        { title: 'Register', href: '/registration' },
-        { title: 'Login', href: '/login' }
-      ];
     }
-    return links;
+    return [
+      { title: 'Register', href: '/registration' },
+      { title: 'Login', href: '/login' }
+    ];
   }
   render() {
     const { history, logout, userId, userInfo: { first_name } } = this.props;
