@@ -6,7 +6,7 @@ import store from './store';
 import { saveStatus } from './helpers/localStorage';
 store.subscribe(() => {
   saveStatus(store.getState());
-})
+});
 
 import '../stylesheets/app.less';
 
@@ -27,10 +27,7 @@ const Root = () => {
     <Provider store={store}>
       <BrowserRouter>
         <App>
-          <Switch>
-            <Route path="/login" component={LogInForm} />
-            <GenerateRoute path="/" authed={() => isLoggedIn()} />
-          </Switch>
+          <GenerateRoute path="/" authed={() => isLoggedIn()} />
         </App>
       </BrowserRouter>
     </Provider>
